@@ -55,23 +55,19 @@
             function doFBlogin() {
                 FB.login(function(response) {
                     if (response.authResponse) {
-
-                        var accessToken = response.authResponse.accessToken;
-                        FB.api('/me',{fields: 'name,id,username,gender,email,birthday'}, function(userInfo) {
-                          console.log(userInfo);
+                        FB.api('/me',{fields: 'name,id,gender,email'}, function(userInfo) {                        
+                            var user = new StackMob.User({
+                                username : userInfo.id,
+                                email: userInfo.email,
+                                name: userInfo.name,
+                                gender: userInfo.gender,
+                                user_photo: 'http://graph.facebook.com/'+userInfo.id+'/picture?type=large'
+                            });
+                            var accessToken = response.authResponse.accessToken;
+                            user.loginWithFacebookAutoCreate(accessToken, true); //true, stay logged in.
+                            alert('Facebook Login Successful');
                         });
-                        var user = new StackMob.User({
-                            username : userInfo.id,
-                            email: userInfo.email,
-                            name: userInfo.name,
-                            gender: userInfo.gender,
-                            birthday: userInfo.birthday,
-                            user_photo: 'http://graph.facebook.com/'+userInfo.id+'/picture?type=large'
-                        });
-                        user.loginWithFacebookAutoCreate(accessToken, true); //true, stay logged in.
-                        alert('Facebook Login Successful');
                     } else {
-                        console.log('User cancelled login or did not fully authorize.');
                         alert('Facebook Login Failed');
                     }
                 }, {
