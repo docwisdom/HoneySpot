@@ -61,8 +61,6 @@ function onSuccess(position) {
 
     var lat = myLatlng.lat();
     var lng = myLatlng.lng();
-    //queryLocations(map, lat, lng);
-    //setMarkers(map, placesArray);
 
     var Place = StackMob.Model.extend({
         schemaName: 'locations'
@@ -148,41 +146,6 @@ function buildInfoWindow(infowindow, marker, map, locations) {
             console.debug(error);
         }
     });
-}
-
-//array of places found
-var placesArray = [
-  ['Hewlett Packard', 37.415515, -122.145989, 4],
-  ['Facebook', 37.339386, -121.894955, 5],
-  ['eBay', 37.295460, -121.927551, 3],
-  ['Google', 37.421931, -122.083979, 2],
-  ['Yahoo', 37.417237, -122.025159, 1]
-];
-
-//set markers for found locations
-function setMarkers(map, locations) {
-  //var image = {
-  //  url: 'images/beachflag.png',
-  //  size: new google.maps.Size(20, 32),
-  //  origin: new google.maps.Point(0,0),
-  //  anchor: new google.maps.Point(0, 32)
-  //};
-
-  var bounds = new google.maps.LatLngBounds ();
-  for (var i = 0; i < locations.length; i++) {
-    var placeMarkers = locations[i];
-    var myLatLng = new google.maps.LatLng(placeMarkers[1], placeMarkers[2]);
-    bounds.extend (myLatLng);
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        //icon: image,
-        //shape: shape,
-        title: placeMarkers[0],
-        zIndex: placeMarkers[3]
-    });
-    map.fitBounds (bounds);
-  }
 }
 */
 
