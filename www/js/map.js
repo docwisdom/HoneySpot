@@ -117,19 +117,12 @@ function buildInfoWindow(infowindow, marker, map, locations) {
         'Howdy' +
         '</div>' +
         '</div>';
-
-    //var infowindow = new google.maps.InfoWindow({
-    //    content: contentString
-    //});
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.content = contentString;
         infowindow.open(map, marker);
         console.log(marker);
     });
 }
-//function queryLocations(map, lat, lng) {
-
-//}
 
 /*function queryLocations(lat, lng) {
     $.ajax({
