@@ -55,15 +55,17 @@
             function doFBlogin() {
                 FB.login(function(response) {
                     if (response.authResponse) {
-                        FB.api('/me',{fields: 'name,id,gender,email'}, function(userInfo) {                        
+                        var accessToken = response.authResponse.accessToken;
+                        FB.api('/me',{fields: 'name,id,gender,email'}, function(response) {  
+                            //console.log(response);
                             var user = new StackMob.User({
-                                username : userInfo.id,
-                                email: userInfo.email,
-                                name: userInfo.name,
-                                gender: userInfo.gender,
-                                user_photo: 'http://graph.facebook.com/'+userInfo.id+'/picture?type=large'
+                                username : response.id,
+                                email: response.email,
+                                name: response.name,
+                                gender: response.gender
+                                //user_photo: 'http://graph.facebook.com/'+userInfo.id+'/picture?type=large'
                             });
-                            var accessToken = response.authResponse.accessToken;
+                            console.log(user);
                             user.loginWithFacebookAutoCreate(accessToken, true); //true, stay logged in.
                             alert('Facebook Login Successful');
                         });
