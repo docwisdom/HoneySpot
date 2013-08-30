@@ -57,7 +57,17 @@
                     if (response.authResponse) {
 
                         var accessToken = response.authResponse.accessToken;
-                        var user = new StackMob.User();
+                        FB.api('/me',{fields: 'name,id,username,gender,email,birthday'}, function(userInfo) {
+                          console.log(userInfo);
+                        });
+                        var user = new StackMob.User({
+                            username : userInfo.id,
+                            email: userInfo.email,
+                            name: userInfo.name,
+                            gender: userInfo.gender,
+                            birthday: userInfo.birthday,
+                            user_photo: 'http://graph.facebook.com/'+userInfo.id+'/picture?type=large'
+                        });
                         user.loginWithFacebookAutoCreate(accessToken, true); //true, stay logged in.
                         alert('Facebook Login Successful');
                     } else {
@@ -69,7 +79,13 @@
                 });
             }
         </script>
-        <!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to present a graphical Login button that triggers the FB.login() function when clicked. Learn more about options for the login button plugin: /docs/reference/plugins/login/ <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>-->
+        <!-- Below we include the Login Button social plugin. This button uses the JavaScript SDK to present a graphical Login button that triggers the FB.login() function when clicked. Learn more about options for the login button plugin: /docs/reference/plugins/login/ <fb:login-button show-faces="true" width="200" max-rows="1">
+
+http://graph.facebook.com/FACEBOOK_USER_ID/picture?type=large
+
+</fb:login-button>-->
+        
+        
         <a href="#" onclick="doFBlogin();">Login</a>
     </body>
 
