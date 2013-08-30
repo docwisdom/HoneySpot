@@ -82,12 +82,20 @@ function onSuccess(position) {
             var infowindow = new google.maps.InfoWindow({
                 content: ''
             });
+              //var image = {
+              //  url: 'images/beachflag.png',
+              //  size: new google.maps.Size(20, 32),
+              //  origin: new google.maps.Point(0,0),
+              //  anchor: new google.maps.Point(0, 32)
+              //};
+
             for (var i = 0; i < locations.length; i++) {
                 var myLatLng = new google.maps.LatLng(locations[i].lat_long.lat, locations[i].lat_long.lon);
                 bounds.extend(myLatLng);
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
+                    //icon: image,
                     title: locations[i].name,
                     zIndex: i
                 });
