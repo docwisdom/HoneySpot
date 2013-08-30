@@ -103,6 +103,7 @@ function onSuccess(position) {
 
         },
         error: function (model, response) {
+            alert("An Error Occurred Getting Position");
             console.log(response);
         }
     });
