@@ -60,6 +60,18 @@
       console.log('Good to see you, ' + response.name + '.');
     });
   }
+    
+FB.login(function(response) {
+  if (response.authResponse) {
+ 
+    var accessToken = response.authResponse.accessToken;
+    var user = new StackMob.User();
+    user.loginWithFacebookAutoCreate(accessToken, true); //true, stay logged in.
+ 
+  } else {
+    console.log('User cancelled login or did not fully authorize.');
+  }
+}, {scope: 'email'});
 </script>
 
 <!--
