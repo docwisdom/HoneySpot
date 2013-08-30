@@ -125,24 +125,6 @@ function buildInfoWindow(infowindow, marker, map, locations) {
     });
 }
 
-/*function queryLocations(lat, lng) {
-    $.ajax({
-        url: 'http://api.stackmob.com/locations?lat_long[near]=37.415515,-122.145989,.00379',
-        headers:{
-          'X-StackMob-API-Key': '45f9e7aa-22f3-43de-8935-95b80d345918', 
-          'Accept': 'application/vnd.stackmob+json; version=0'
-        }, 
-        type: 'GET',
-        success: function(data) {
-            console.debug(data);
-        },
-        error: function(error) {
-            console.debug(error);
-        }
-    });
-}
-*/
-
 function onError() {
     alert('Please Enable Geolocation');
 }
